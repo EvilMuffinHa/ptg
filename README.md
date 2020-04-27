@@ -3,7 +3,7 @@ Procedural terrain generation using perlin noise
 
 ## Requirements
 
-lwjgl 3.2.3
+lwjgl 3.2.3  
 screenPixelMap  
 (https://github.com/EvilMuffinHa/screenPixelMap)
 
