@@ -19,6 +19,19 @@ public class Perlin {
 
 
     }
+    public Perlin (int wrap, int seed) {
+        this.wrap = wrap;
+        permutationTable = new ArrayList();
+        for (int i = 0; i < this.wrap+1; i ++ ) {
+            permutationTable.add(i);
+        }
+        Shuffle.Shuffle(permutationTable, seed);
+        for (int i = 0; i < this.wrap+1; i++) {
+            permutationTable.add(permutationTable.get(i));
+        }
+
+
+    }
 
     public float Perlin2D(float x, float y) {
         int X = (int)Math.floor(x) % this.wrap;

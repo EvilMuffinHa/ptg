@@ -47,6 +47,32 @@ public class NoiseMap {
         return map;
     }
 
+    public pixelMap getMap(int seed) {
+        Perlin perlin = new Perlin(this.wrap, seed);
+        pixelMap map = new pixelMap(this.x, this.y);
+        float a;
+        float f;
+        for (int i = 0; i < this.x; i ++ ) {
+            for (int j = 0; j < this.y; j ++ ) {
+                float value = 0;
+                a = this.amplitude;
+                f = this.frequency;
+                for (int o = 0; o < this.octaves; o ++ ) {
+                    float result = a * perlin.Perlin2D((float) i * f, (float) j * f);
+                    value += result;
+                    a *= this.persistence;
+                    f *= this.lacunarity;
+
+                }
+                value /= this.amplitude;
+                value += 1;
+                value /= 2;
+                map.setPixel(i, j, value, value, value);
+            }
+        }
+        return map;
+    }
+
     public int getX() {
         return x;
     }
