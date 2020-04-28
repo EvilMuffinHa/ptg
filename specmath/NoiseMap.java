@@ -11,6 +11,7 @@ public class NoiseMap {
     private float persistence;
     private float lacunarity;
     private float amplitude;
+    private long seed;
     public NoiseMap(int x, int y, int wrap, float frequency, int octaves, float persistence, float lacunarity, float amplitude) {
         this.x = x;
         this.y = y;
@@ -23,6 +24,7 @@ public class NoiseMap {
     }
     public pixelMap getMap() {
         Perlin perlin = new Perlin(this.wrap);
+        this.seed = perlin.getSeed();
         pixelMap map = new pixelMap(this.x, this.y);
         float a;
         float f;
@@ -47,8 +49,9 @@ public class NoiseMap {
         return map;
     }
 
-    public pixelMap getMap(int seed) {
+    public pixelMap getMap(long seed) {
         Perlin perlin = new Perlin(this.wrap, seed);
+        this.seed = perlin.getSeed();
         pixelMap map = new pixelMap(this.x, this.y);
         float a;
         float f;
@@ -135,5 +138,9 @@ public class NoiseMap {
 
     public void setAmplitude(float amplitude) {
         this.amplitude = amplitude;
+    }
+
+    public long getSeed() {
+        return this.seed;
     }
 }

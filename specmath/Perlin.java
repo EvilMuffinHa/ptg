@@ -5,23 +5,27 @@ import java.util.ArrayList;
 public class Perlin {
     private ArrayList<Integer> permutationTable;
     private int wrap;
+    private long seed;
 
     public Perlin (int wrap) {
         this.wrap = wrap;
-        permutationTable = new ArrayList();
+        permutationTable = new ArrayList<>();
         for (int i = 0; i < this.wrap+1; i ++ ) {
             permutationTable.add(i);
         }
-        Shuffle.Shuffle(permutationTable);
+        ArrayList<Object> combinedOutput = new ArrayList<>();
+        combinedOutput = Shuffle.Shuffle(permutationTable);
+        permutationTable = (ArrayList<Integer>) combinedOutput.get(0);
         for (int i = 0; i < this.wrap+1; i++) {
             permutationTable.add(permutationTable.get(i));
         }
+        this.seed = (long) combinedOutput.get(1);
 
 
     }
-    public Perlin (int wrap, int seed) {
+    public Perlin (int wrap, long seed) {
         this.wrap = wrap;
-        permutationTable = new ArrayList();
+        permutationTable = new ArrayList<>();
         for (int i = 0; i < this.wrap+1; i ++ ) {
             permutationTable.add(i);
         }
@@ -30,7 +34,7 @@ public class Perlin {
             permutationTable.add(permutationTable.get(i));
         }
 
-
+        this.seed = seed;
     }
 
     public float Perlin2D(float x, float y) {
@@ -77,5 +81,9 @@ public class Perlin {
 
         int h = permValue % cVectorTable.length;
         return cVectorTable[h];
+    }
+
+    public long getSeed() {
+        return this.seed;
     }
 }
