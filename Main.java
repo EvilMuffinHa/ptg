@@ -2,7 +2,6 @@ import org.spm.pixelMap;
 import specmath.NoiseMap;
 
 import java.io.IOException;
-import java.util.Random;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -14,12 +13,12 @@ public class Main {
                     int[] rgb = map.getHexPixelAt(x, y);
                     if (map.getPixelAt(x, y)[0] < 0.5) {
                         map.setPixel(x, y, 0, 0, rgb[2] * 2 / (float) 255);
-                    } else if (map.getPixelAt(x, y)[0] < 0.501) {
+                    } else if (map.getPixelAt(x, y)[0] < 0.51) {
                         map.setPixel(x, y, rgb[2] * (float) 1.3 / (float) 255, rgb[2] * (float) 1.2 / (float) 255, 0);
                     } else if (map.getPixelAt(x, y)[0] < 0.7) {
                         map.setPixel(x, y, 0, rgb[2] / (float) 255, Math.round((rgb[2] * 0.5)) / (float) 255);
                     } else if (map.getPixelAt(x, y)[0] < 0.9) {
-                        map.setPixel(x, y, rgb[2] / (float)255, (float)rgb[2]/2 / (float) 255, (float)rgb[2]/4 / (float) 255);
+                        map.setPixel(x, y, rgb[2] /(float)1.5 /(float)255, (float)rgb[2]/3 / (float) 255, (float)rgb[2]/6 / (float) 255);
                     } else {
                     }
                 }
